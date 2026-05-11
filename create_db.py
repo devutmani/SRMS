@@ -98,12 +98,14 @@ def create_teacher():
     cur = con.cursor()
 
     cur.execute("""
-        CREATE TABLE IF NOT EXISTS teacher(
-            tid VARCHAR(10) PRIMARY KEY,
-            name VARCHAR(100),
-            email VARCHAR(100) UNIQUE,
-            password VARCHAR(100),
-            contact VARCHAR(20)
+        CREATE TABLE IF NOT EXISTS employee(
+            f_name, 
+            1_name, 
+            contact, 
+            email, 
+            question, 
+            answer, 
+            password
         )
     """)
 

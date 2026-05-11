@@ -210,7 +210,7 @@ class Register:
 
                 # ================= Check Existing User =================
                 cur.execute(
-                    "SELECT * FROM teacher WHERE email=%s",
+                    "SELECT * FROM employee WHERE email=%s",
                     (self.var_email.get(),)
                 )
 
@@ -226,7 +226,7 @@ class Register:
                 else:
                     cur.execute(
                         """
-                        INSERT INTO teacher
+                        INSERT INTO employee
                         (name, email, contact, password)
                         VALUES(%s,%s,%s,%s)
                         """,
