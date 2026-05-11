@@ -209,8 +209,9 @@ class Register:
                 cur = con.cursor()
 
                 # ================= Check Existing User =================
+                # FIX: Table was 'employee' — changed to 'teacher' to match create_db and login
                 cur.execute(
-                    "SELECT * FROM employee WHERE email=%s",
+                    "SELECT * FROM teacher WHERE email=%s",
                     (self.var_email.get(),)
                 )
 
@@ -224,9 +225,10 @@ class Register:
                     )
 
                 else:
+                    # FIX: Table was 'employee' — changed to 'teacher'
                     cur.execute(
                         """
-                        INSERT INTO employee
+                        INSERT INTO teacher
                         (name, email, contact, password)
                         VALUES(%s,%s,%s,%s)
                         """,
@@ -269,9 +271,14 @@ class Register:
         self.var_check.set(0)
 
     # ================= Login Window =================
+    # FIX: Was destroying root then importing login with no Tk() — causes crash.
+    #      Now destroys current window and opens a fresh Login Tk root.
     def login_window(self):
         self.root.destroy()
-        import login
+        from login import Login_Window
+        new_root = Tk()
+        Login_Window(new_root)
+        new_root.mainloop()
 
 
 # ================= Main =================

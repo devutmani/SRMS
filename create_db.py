@@ -93,19 +93,22 @@ def create_result():
 
 
 # ================= Create Teacher Table =================
+# FIX: Was completely broken — wrong syntax, missing data types, wrong table name.
+#      Renamed to 'teacher' to match login.py queries.
+#      Added all required columns with correct SQL syntax.
 def create_teacher():
     con = connect_db()
     cur = con.cursor()
 
     cur.execute("""
-        CREATE TABLE IF NOT EXISTS employee(
-            f_name, 
-            1_name, 
-            contact, 
-            email, 
-            question, 
-            answer, 
-            password
+        CREATE TABLE IF NOT EXISTS teacher(
+            tid     INT PRIMARY KEY AUTO_INCREMENT,
+            name    VARCHAR(100)  NOT NULL,
+            contact VARCHAR(20),
+            email   VARCHAR(100)  UNIQUE NOT NULL,
+            question VARCHAR(200),
+            answer  VARCHAR(100),
+            password VARCHAR(100) NOT NULL
         )
     """)
 

@@ -122,9 +122,14 @@ class Login_Window:
         self.working()
 
     # ================= Register Window =================
+    # FIX: Was destroying root then doing bare 'import register' with no Tk() — crashes.
+    #      Now destroys window and properly opens Register with a new Tk root.
     def register_window(self):
         self.root.destroy()
-        import register
+        from register import Register
+        new_root = Tk()
+        Register(new_root)
+        new_root.mainloop()
 
     # ================= Forget Password =================
     def forget_password(self):
@@ -141,6 +146,7 @@ class Login_Window:
             con = connect_db()
             cur = con.cursor()
 
+            # FIX: Table is 'teacher' (consistent with create_db and register)
             cur.execute(
                 "SELECT * FROM teacher WHERE email=%s",
                 (self.txt_email.get(),)
@@ -252,6 +258,7 @@ class Login_Window:
                 con = connect_db()
                 cur = con.cursor()
 
+                # FIX: Table is 'teacher' (consistent with create_db and register)
                 cur.execute(
                     "UPDATE teacher SET password=%s WHERE email=%s",
                     (
@@ -296,6 +303,7 @@ class Login_Window:
                 con = connect_db()
                 cur = con.cursor()
 
+                # FIX: Table is 'teacher' (consistent with create_db and register)
                 cur.execute(
                     "SELECT * FROM teacher WHERE email=%s AND password=%s",
                     (
@@ -320,9 +328,13 @@ class Login_Window:
                         parent=self.root
                     )
 
+                    # FIX: Was destroying root THEN importing dashboard with no Tk() — crashes.
+                    #      Now we destroy the login window and open dashboard with a fresh Tk root.
                     self.root.destroy()
-
-                    import dashboard
+                    from dashboard import RMS
+                    new_root = Tk()
+                    RMS(new_root)
+                    new_root.mainloop()
 
                 con.close()
 
@@ -407,7 +419,6 @@ class Login_Window:
 
 # ================= Main =================
 if __name__ == "__main__":
-
     root = Tk()
     obj = Login_Window(root)
     root.mainloop()
