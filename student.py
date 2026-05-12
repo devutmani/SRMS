@@ -11,7 +11,6 @@ class StudentClass:
         self.root.config(bg="white")
         self.root.focus_force()
 
-        # ================= Variables =================
         self.var_roll = StringVar()
         self.var_name = StringVar()
         self.var_email = StringVar()
@@ -25,17 +24,9 @@ class StudentClass:
         self.var_pin = StringVar()
         self.var_search = StringVar()
 
-        # ================= Title =================
-        title = Label(
-            self.root,
-            text="Manage Student Details",
-            font=("goudy old style", 20, "bold"),
-            bg="#033054",
-            fg="white"
-        )
+        title = Label(self.root, text="Manage Student Details", font=("goudy old style", 20, "bold"), bg="#033054", fg="white")
         title.place(x=10, y=15, width=1180, height=35)
 
-        # ================= Labels =================
         Label(self.root, text="Roll No.", font=("goudy old style", 15, "bold"), bg="white").place(x=10, y=60)
         Label(self.root, text="Name", font=("goudy old style", 15, "bold"), bg="white").place(x=10, y=100)
         Label(self.root, text="Email", font=("goudy old style", 15, "bold"), bg="white").place(x=10, y=140)
@@ -51,100 +42,58 @@ class StudentClass:
         Label(self.root, text="Pin", font=("goudy old style", 15, "bold"), bg="white").place(x=500, y=220)
         Label(self.root, text="Address", font=("goudy old style", 15, "bold"), bg="white").place(x=10, y=260)
 
-        # ================= Entries =================
-        self.txt_roll = Entry(self.root, textvariable=self.var_roll,
-                              font=("goudy old style", 15, "bold"),
-                              bg="lightyellow")
+        self.txt_roll = Entry(self.root, textvariable=self.var_roll, font=("goudy old style", 15, "bold"), bg="lightyellow")
         self.txt_roll.place(x=150, y=60, width=200)
 
-        Entry(self.root, textvariable=self.var_name,
-              font=("goudy old style", 15, "bold"),
-              bg="lightyellow").place(x=150, y=100, width=200)
+        Entry(self.root, textvariable=self.var_name, font=("goudy old style", 15, "bold"), bg="lightyellow").place(x=150, y=100, width=200)
 
-        Entry(self.root, textvariable=self.var_email,
-              font=("goudy old style", 15, "bold"),
-              bg="lightyellow").place(x=150, y=140, width=200)
+        Entry(self.root, textvariable=self.var_email, font=("goudy old style", 15, "bold"), bg="lightyellow").place(x=150, y=140, width=200)
 
-        self.txt_gender = ttk.Combobox(
-            self.root,
-            textvariable=self.var_gender,
-            values=("Select", "Male", "Female", "Other"),
-            font=("goudy old style", 15, "bold"),
-            state="readonly",
-            justify=CENTER
-        )
+        self.txt_gender = ttk.Combobox(self.root, textvariable=self.var_gender, values=("Select", "Male", "Female", "Other"), font=("goudy old style", 15, "bold"), state="readonly", justify=CENTER)
         self.txt_gender.place(x=150, y=180, width=200)
         self.txt_gender.current(0)
 
-        Entry(self.root, textvariable=self.var_dob,
-              font=("goudy old style", 15, "bold"),
-              bg="lightyellow").place(x=480, y=60, width=200)
+        Entry(self.root, textvariable=self.var_dob, font=("goudy old style", 15, "bold"), bg="lightyellow").place(x=480, y=60, width=200)
 
-        Entry(self.root, textvariable=self.var_contact,
-              font=("goudy old style", 15, "bold"),
-              bg="lightyellow").place(x=480, y=100, width=200)
+        Entry(self.root, textvariable=self.var_contact, font=("goudy old style", 15, "bold"), bg="lightyellow").place(x=480, y=100, width=200)
 
-        Entry(self.root, textvariable=self.var_admission,
-              font=("goudy old style", 15, "bold"),
-              bg="lightyellow").place(x=480, y=140, width=200)
+        Entry(self.root, textvariable=self.var_admission, font=("goudy old style", 15, "bold"), bg="lightyellow").place(x=480, y=140, width=200)
 
-        # ================= Course Combobox =================
         self.course_list = []
         self.fetch_course()
 
-        self.txt_course = ttk.Combobox(
-            self.root,
-            textvariable=self.var_course,
-            values=self.course_list,
-            font=("goudy old style", 15, "bold"),
-            state="readonly",
-            justify=CENTER
-        )
+        self.txt_course = ttk.Combobox(self.root, textvariable=self.var_course, values=self.course_list, font=("goudy old style", 15, "bold"), state="readonly", justify=CENTER)
         self.txt_course.place(x=480, y=180, width=200)
         self.txt_course.set("Select")
 
-        Entry(self.root, textvariable=self.var_state,
-              font=("goudy old style", 15, "bold"),
-              bg="lightyellow").place(x=150, y=220, width=150)
+        Entry(self.root, textvariable=self.var_state, font=("goudy old style", 15, "bold"), bg="lightyellow").place(x=150, y=220, width=150)
 
-        Entry(self.root, textvariable=self.var_city,
-              font=("goudy old style", 15, "bold"),
-              bg="lightyellow").place(x=380, y=220, width=100)
+        Entry(self.root, textvariable=self.var_city, font=("goudy old style", 15, "bold"), bg="lightyellow").place(x=380, y=220, width=100)
 
-        Entry(self.root, textvariable=self.var_pin,
-              font=("goudy old style", 15, "bold"),
-              bg="lightyellow").place(x=560, y=220, width=120)
+        Entry(self.root, textvariable=self.var_pin, font=("goudy old style", 15, "bold"), bg="lightyellow").place(x=560, y=220, width=120)
 
-        self.txt_address = Text(
-            self.root,
-            font=("goudy old style", 15, "bold"),
-            bg="lightyellow"
-        )
+        self.txt_address = Text(self.root, font=("goudy old style", 15, "bold"), bg="lightyellow")
         self.txt_address.place(x=150, y=260, width=540, height=100)
 
-        # ================= Buttons =================
         Button(self.root, text="Save", command=self.add, font=("goudy old style", 15, "bold"), bg="#2196f3", fg="white").place(x=150, y=400, width=110, height=40)
+
         Button(self.root, text="Update", command=self.update, font=("goudy old style", 15, "bold"), bg="#4caf50", fg="white").place(x=270, y=400, width=110, height=40)
+
         Button(self.root, text="Delete", command=self.delete, font=("goudy old style", 15, "bold"), bg="#f44336", fg="white").place(x=390, y=400, width=110, height=40)
+
         Button(self.root, text="Clear", command=self.clear, font=("goudy old style", 15, "bold"), bg="#607d8b", fg="white").place(x=510, y=400, width=110, height=40)
 
-        # ================= Search =================
         Entry(self.root, textvariable=self.var_search, font=("goudy old style", 15, "bold"), bg="lightyellow").place(x=870, y=60, width=180)
+
         Button(self.root, text="Search", command=self.search, font=("goudy old style", 15, "bold"), bg="#2196f3", fg="white").place(x=1070, y=60, width=120, height=28)
 
-        # ================= Table =================
         self.C_Frame = Frame(self.root, bd=2, relief=RIDGE)
         self.C_Frame.place(x=720, y=100, width=470, height=340)
 
         scrolly = Scrollbar(self.C_Frame, orient=VERTICAL)
         scrollx = Scrollbar(self.C_Frame, orient=HORIZONTAL)
 
-        self.StudentTable = ttk.Treeview(
-            self.C_Frame,
-            columns=("roll", "name", "email", "gender", "dob", "contact", "admission", "course", "state", "city", "pin", "address"),
-            xscrollcommand=scrollx.set,
-            yscrollcommand=scrolly.set
-        )
+        self.StudentTable = ttk.Treeview(self.C_Frame, columns=("roll", "name", "email", "gender", "dob", "contact", "admission", "course", "state", "city", "pin", "address"), xscrollcommand=scrollx.set, yscrollcommand=scrolly.set)
 
         scrollx.pack(side=BOTTOM, fill=X)
         scrolly.pack(side=RIGHT, fill=Y)
@@ -162,7 +111,6 @@ class StudentClass:
 
         self.show()
 
-    # ================= Fetch Course =================
     def fetch_course(self):
         try:
             con = connect_db()
@@ -181,23 +129,19 @@ class StudentClass:
         except Exception as ex:
             messagebox.showerror("Error", f"Error due to {str(ex)}")
 
-    # ================= Add =================
     def add(self):
         try:
             con = connect_db()
             cur = con.cursor()
 
-            # ===== Validation =====
             if self.var_roll.get() == "":
                 messagebox.showerror("Error", "Roll Number is required", parent=self.root)
                 return
 
-            # ===== Check Roll Number =====
             if not self.var_roll.get().isdigit():
                 messagebox.showerror("Error", "Roll Number must be numeric only", parent=self.root)
                 return
 
-            # ===== Duplicate Check =====
             cur.execute("SELECT * FROM student WHERE roll=%s", (self.var_roll.get(),))
             row = cur.fetchone()
 
@@ -205,45 +149,26 @@ class StudentClass:
                 messagebox.showerror("Error", "Roll Number already exists", parent=self.root)
                 return
 
-            # ===== Insert =====
-            cur.execute("""
-                INSERT INTO student
-                (roll, name, email, gender, dob, contact,
-                 admission, course, state, city, pin, address)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-            """, (
-                self.var_roll.get(),
-                self.var_name.get(),
-                self.var_email.get(),
-                self.var_gender.get(),
-                self.var_dob.get(),
-                self.var_contact.get(),
-                self.var_admission.get(),
-                self.var_course.get(),
-                self.var_state.get(),
-                self.var_city.get(),
-                self.var_pin.get(),
-                self.txt_address.get("1.0", END)
-            ))
+            cur.execute("INSERT INTO student (roll, name, email, gender, dob, contact, admission, course, state, city, pin, address) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (self.var_roll.get(), self.var_name.get(), self.var_email.get(), self.var_gender.get(), self.var_dob.get(), self.var_contact.get(), self.var_admission.get(), self.var_course.get(), self.var_state.get(), self.var_city.get(), self.var_pin.get(), self.txt_address.get("1.0", END)))
 
             con.commit()
 
             messagebox.showinfo("Success", "Student Added Successfully", parent=self.root)
+
             self.show()
             self.clear()
 
         except Exception as ex:
             messagebox.showerror("Error", f"Error due to : {str(ex)}", parent=self.root)
+
         finally:
             con.close()
 
-    # ================= Update =================
     def update(self):
         try:
             con = connect_db()
             cur = con.cursor()
 
-            # ===== Validation =====
             if self.var_roll.get() == "":
                 messagebox.showerror("Error", "Please select student first", parent=self.root)
                 return
@@ -252,7 +177,6 @@ class StudentClass:
                 messagebox.showerror("Error", "Invalid Roll Number", parent=self.root)
                 return
 
-            # ===== Check Student Exists =====
             cur.execute("SELECT * FROM student WHERE roll=%s", (int(self.var_roll.get()),))
             row = cur.fetchone()
 
@@ -260,54 +184,22 @@ class StudentClass:
                 messagebox.showerror("Error", "Student record not found", parent=self.root)
                 return
 
-            # ===== Update Record =====
-            cur.execute("""
-                UPDATE student SET
-                name=%s,
-                email=%s,
-                gender=%s,
-                dob=%s,
-                contact=%s,
-                admission=%s,
-                course=%s,
-                state=%s,
-                city=%s,
-                pin=%s,
-                address=%s
-                WHERE roll=%s
-            """, (
-                self.var_name.get(),
-                self.var_email.get(),
-                self.var_gender.get(),
-                self.var_dob.get(),
-                self.var_contact.get(),
-                self.var_admission.get(),
-                self.var_course.get(),
-                self.var_state.get(),
-                self.var_city.get(),
-                self.var_pin.get(),
-                self.txt_address.get("1.0", END),
-                int(self.var_roll.get())
-            ))
+            cur.execute("UPDATE student SET name=%s, email=%s, gender=%s, dob=%s, contact=%s, admission=%s, course=%s, state=%s, city=%s, pin=%s, address=%s WHERE roll=%s", (self.var_name.get(), self.var_email.get(), self.var_gender.get(), self.var_dob.get(), self.var_contact.get(), self.var_admission.get(), self.var_course.get(), self.var_state.get(), self.var_city.get(), self.var_pin.get(), self.txt_address.get("1.0", END), int(self.var_roll.get())))
 
             con.commit()
 
-            # ===== Success Message =====
             messagebox.showinfo("Success", "Student Updated Successfully", parent=self.root)
 
-            # ===== Refresh Table =====
             self.show()
-
-            # ===== Clear Fields =====
             self.clear()
 
         except Exception as ex:
             messagebox.showerror("Error", f"Error due to : {str(ex)}", parent=self.root)
+
         finally:
             if 'con' in locals():
                 con.close()
 
-    # ================= Delete =================
     def delete(self):
         try:
             con = connect_db()
@@ -318,19 +210,22 @@ class StudentClass:
                 return
 
             op = messagebox.askyesno("Confirm", "Do you really want to delete?", parent=self.root)
+
             if op:
                 cur.execute("DELETE FROM student WHERE roll=%s", (self.var_roll.get(),))
                 con.commit()
+
                 messagebox.showinfo("Deleted", "Student Deleted Successfully", parent=self.root)
+
                 self.show()
                 self.clear()
 
         except Exception as ex:
             messagebox.showerror("Error", f"Error due to : {str(ex)}", parent=self.root)
+
         finally:
             con.close()
 
-    # ================= Show =================
     def show(self):
         try:
             con = connect_db()
@@ -349,7 +244,6 @@ class StudentClass:
         except Exception as ex:
             messagebox.showerror("Error", f"Error due to {str(ex)}")
 
-    # ================= Get Data =================
     def get_data(self, ev):
         f = self.StudentTable.focus()
         content = self.StudentTable.item(f)
@@ -370,17 +264,15 @@ class StudentClass:
 
             self.txt_address.delete("1.0", END)
             self.txt_address.insert(END, row[11])
+
             self.txt_roll.config(state='readonly')
 
-    # ================= Search =================
     def search(self):
         try:
             con = connect_db()
             cur = con.cursor()
 
-            cur.execute("SELECT * FROM student WHERE roll=%s",
-                        (self.var_search.get(),))
-
+            cur.execute("SELECT * FROM student WHERE roll=%s", (self.var_search.get(),))
             rows = cur.fetchall()
 
             self.StudentTable.delete(*self.StudentTable.get_children())
@@ -393,7 +285,6 @@ class StudentClass:
         except Exception as ex:
             messagebox.showerror("Error", f"Error due to {str(ex)}")
 
-    # ================= Clear =================
     def clear(self):
         self.var_roll.set("")
         self.var_name.set("")

@@ -1,5 +1,5 @@
 from tkinter import *
-from PIL import Image, ImageTk  # pip install pillow
+from PIL import Image, ImageTk
 from course import CourseClass
 from student import StudentClass
 from result import ResultClass
@@ -13,94 +13,51 @@ class RMS:
         self.root.geometry("1350x700+0+0")
         self.root.config(bg="White")
 
-        # ============(icons)=============
         self.logo_dash = ImageTk.PhotoImage(file="images/logo_p.png")
 
-        # ============(title)=============
-        title = Label(
-            self.root,
-            text="Student Result Management System",
-            padx=10,
-            compound="left",
-            image=self.logo_dash,
-            font=("goudy old style", 20, "bold"),
-            bg="#033054",
-            fg="white"
-        ).place(x=0, y=0, relwidth=1, height=50)
+        title = Label(self.root, text="Student Result Management System", padx=10, compound="left", image=self.logo_dash, font=("goudy old style", 20, "bold"), bg="#033054", fg="white")
+        title.place(x=0, y=0, relwidth=1, height=50)
 
-        # ============(Menu)=============
         M_Frame = LabelFrame(self.root, text="Menu", font=("times new roman", 15), bg="white")
         M_Frame.place(x=10, y=70, width=1340, height=80)
 
-        Button(M_Frame, text="Course", font=("goudy old style", 15, "bold"),
-               bg="#0b5377", fg="white", cursor="hand2",
-               command=self.add_course).place(x=20, y=5, width=200, height=40)
+        Button(M_Frame, text="Course", font=("goudy old style", 15, "bold"), bg="#0b5377", fg="white", cursor="hand2", command=self.add_course).place(x=20, y=5, width=200, height=40)
 
-        Button(M_Frame, text="Student", font=("goudy old style", 15, "bold"),
-               bg="#0b5377", fg="white", cursor="hand2",
-               command=self.add_student).place(x=240, y=5, width=200, height=40)
+        Button(M_Frame, text="Student", font=("goudy old style", 15, "bold"), bg="#0b5377", fg="white", cursor="hand2", command=self.add_student).place(x=240, y=5, width=200, height=40)
 
-        Button(M_Frame, text="Result", font=("goudy old style", 15, "bold"),
-               bg="#0b5377", fg="white", cursor="hand2",
-               command=self.add_result).place(x=460, y=5, width=200, height=40)
+        Button(M_Frame, text="Result", font=("goudy old style", 15, "bold"), bg="#0b5377", fg="white", cursor="hand2", command=self.add_result).place(x=460, y=5, width=200, height=40)
 
-        Button(M_Frame, text="View Student Result", font=("goudy old style", 15, "bold"),
-               bg="#0b5377", fg="white", cursor="hand2",
-               command=self.add_report).place(x=680, y=5, width=200, height=40)
+        Button(M_Frame, text="View Student Result", font=("goudy old style", 15, "bold"), bg="#0b5377", fg="white", cursor="hand2", command=self.add_report).place(x=680, y=5, width=200, height=40)
 
-        # FIX: Logout and Exit buttons had no command= — added proper handlers
-        Button(M_Frame, text="Logout", font=("goudy old style", 15, "bold"),
-               bg="#0b5377", fg="white", cursor="hand2",
-               command=self.logout).place(x=900, y=5, width=200, height=40)
+        Button(M_Frame, text="Logout", font=("goudy old style", 15, "bold"), bg="#0b5377", fg="white", cursor="hand2", command=self.logout).place(x=900, y=5, width=200, height=40)
 
-        Button(M_Frame, text="Exit", font=("goudy old style", 15, "bold"),
-               bg="#0b5377", fg="white", cursor="hand2",
-               command=self.root.destroy).place(x=1120, y=5, width=200, height=40)
+        Button(M_Frame, text="Exit", font=("goudy old style", 15, "bold"), bg="#0b5377", fg="white", cursor="hand2", command=self.root.destroy).place(x=1120, y=5, width=200, height=40)
 
-        # =========(Content Window)=========
         self.bg_image = Image.open("images/bg.png")
         self.bg_image = self.bg_image.resize((920, 350), Image.LANCZOS)
         self.bg_image = ImageTk.PhotoImage(self.bg_image)
 
-        self.lbl_bg = Label(self.root, image=self.bg_image).place(x=400, y=180, width=920, height=350)
+        self.lbl_bg = Label(self.root, image=self.bg_image)
+        self.lbl_bg.place(x=400, y=180, width=920, height=350)
 
-        # =========(Update Details)=========
-        self.lbl_course = Label(
-            self.root, text="Total Courses\n[0]",
-            font=("goudy old style", 20), bd=10, relief=RIDGE,
-            bg="#e43b06", fg="white"
-        )
+        self.lbl_course = Label(self.root, text="Total Courses\n[0]", font=("goudy old style", 20), bd=10, relief=RIDGE, bg="#e43b06", fg="white")
         self.lbl_course.place(x=400, y=530, width=300, height=100)
 
-        self.lbl_student = Label(
-            self.root, text="Total Students\n[0]",
-            font=("goudy old style", 20), bd=10, relief=RIDGE,
-            bg="#0676ad", fg="white"
-        )
+        self.lbl_student = Label(self.root, text="Total Students\n[0]", font=("goudy old style", 20), bd=10, relief=RIDGE, bg="#0676ad", fg="white")
         self.lbl_student.place(x=710, y=530, width=300, height=100)
 
-        self.lbl_result = Label(
-            self.root, text="Total Results\n[0]",
-            font=("goudy old style", 20), bd=10, relief=RIDGE,
-            bg="#038074", fg="white"
-        )
+        self.lbl_result = Label(self.root, text="Total Results\n[0]", font=("goudy old style", 20), bd=10, relief=RIDGE, bg="#038074", fg="white")
         self.lbl_result.place(x=1020, y=530, width=300, height=100)
 
-        # ============(footer)=============
-        footer = Label(
-            self.root,
-            text="Student Result Management System\nDeveloper: Dev Kumar",
-            font=("goudy old style", 12),
-            bg="#033054",
-            fg="white"
-        ).pack(side=BOTTOM, fill=X)
+        footer = Label(self.root, text="Student Result Management System\nDeveloper: Dev Kumar", font=("goudy old style", 12), bg="#033054", fg="white")
+        footer.pack(side=BOTTOM, fill=X)
 
         self.update_counts()
 
-    # ================= Update Counts =================
     def update_counts(self):
         try:
             from create_db import connect_db
+
             con = connect_db()
             cur = con.cursor()
 
@@ -114,14 +71,15 @@ class RMS:
             self.lbl_result.config(text=f"Total Results\n[{cur.fetchone()[0]}]")
 
             con.close()
-        except Exception:
-            pass  # Silently ignore if DB not available at startup
 
-    # ================= Logout =================
-    # FIX: Logout now goes back to the Login screen with a fresh Tk root
+        except Exception:
+            pass
+
     def logout(self):
         self.root.destroy()
+
         from login import Login_Window
+
         new_root = Tk()
         Login_Window(new_root)
         new_root.mainloop()
